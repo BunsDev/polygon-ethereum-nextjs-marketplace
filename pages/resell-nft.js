@@ -3,12 +3,14 @@ import { ethers } from 'ethers'
 import { useRouter } from 'next/router'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
+import { Image } from 'next/image'
+// import {
+//   marketplaceAddress
+// } from '../config'
 
-import {
-  marketplaceAddress
-} from '../config'
+import NFTMarketplace from '../contracts/NFTMarketplace.json'
 
-import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+export const marketplaceAddress = '0x0Ad69CA837e993c2D9dc8C240Ea7c900c924a8EA'
 
 export default function ResellNFT() {
   const [formInput, updateFormInput] = useState({ price: '', image: '' })
@@ -24,7 +26,7 @@ export default function ResellNFT() {
     if (!tokenURI) return
     const meta = await axios.get(tokenURI)
     updateFormInput(state => ({ ...state, image: meta.data.image }))
-  }
+  } [fetchNFT]
 
   async function listNFTForSale() {
     if (!price) return
@@ -54,7 +56,7 @@ export default function ResellNFT() {
         />
         {
           image && (
-            <img className="rounded mt-4" width="350" src={image} />
+            <Image className="rounded mt-4" width="350" src={image} alt="nft image" />
           )
         }
         <button onClick={listNFTForSale} className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg">

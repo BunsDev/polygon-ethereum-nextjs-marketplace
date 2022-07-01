@@ -2,12 +2,14 @@ import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
+import { Image } from 'next/image'
+// import {
+//   marketplaceAddress
+// } from '../config'
 
-import {
-  marketplaceAddress
-} from '../config'
+import NFTMarketplace from '../contracts/NFTMarketplace.json'
 
-import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+export const marketplaceAddress = '0x0Ad69CA837e993c2D9dc8C240Ea7c900c924a8EA'
 
 export default function CreatorDashboard() {
   const [nfts, setNfts] = useState([])
@@ -53,7 +55,7 @@ export default function CreatorDashboard() {
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <img src={nft.image} className="rounded" />
+                <Image src={nft.image} className="rounded" alt="nft image" />
                 <div className="p-4 bg-black">
                   <p className="text-2xl font-bold text-white">Price - {nft.price} Eth</p>
                 </div>

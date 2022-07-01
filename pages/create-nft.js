@@ -1,16 +1,19 @@
 import { useState } from 'react'
 import { ethers } from 'ethers'
 import { create as ipfsHttpClient } from 'ipfs-http-client'
+import Image from 'next/image'
 import { useRouter } from 'next/router'
 import Web3Modal from 'web3modal'
 
-const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
 
-import {
-  marketplaceAddress
-} from '../config'
-
-import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+// import {
+  //   marketplaceAddress
+  // } from '../config'
+  
+  import NFTMarketplace from '../contracts/NFTMarketplace.json'
+  
+  const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
+export const marketplaceAddress = '0x0Ad69CA837e993c2D9dc8C240Ea7c900c924a8EA'
 
 export default function CreateItem() {
   const [fileUrl, setFileUrl] = useState(null)
@@ -93,7 +96,7 @@ export default function CreateItem() {
         />
         {
           fileUrl && (
-            <img className="rounded mt-4" width="350" src={fileUrl} />
+            <Image className="rounded mt-4" width="350" src={fileUrl} alt="" />
           )
         }
         <button onClick={listNFTForSale} className="font-bold mt-4 bg-pink-500 text-white rounded p-4 shadow-lg">

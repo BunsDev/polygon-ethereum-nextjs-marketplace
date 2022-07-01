@@ -2,12 +2,15 @@ import { ethers } from 'ethers'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import Web3Modal from 'web3modal'
+import { Image } from 'next/image'
 
-import {
-  marketplaceAddress
-} from '../config'
+// import {
+//   marketplaceAddress
+// } from '../config'
 
-import NFTMarketplace from '../artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json'
+import NFTMarketplace from '../contracts/NFTMarketplace.json'
+
+export const marketplaceAddress = '0x0Ad69CA837e993c2D9dc8C240Ea7c900c924a8EA'
 
 export default function Home() {
   const [nfts, setNfts] = useState([])
@@ -67,7 +70,7 @@ export default function Home() {
           {
             nfts.map((nft, i) => (
               <div key={i} className="border shadow rounded-xl overflow-hidden">
-                <img src={nft.image} />
+                <Image src={nft.image} alt="nft image" />
                 <div className="p-4">
                   <p style={{ height: '64px' }} className="text-2xl font-semibold">{nft.name}</p>
                   <div style={{ height: '70px', overflow: 'hidden' }}>
